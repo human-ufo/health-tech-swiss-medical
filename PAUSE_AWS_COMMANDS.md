@@ -8,10 +8,10 @@
 # Listar access keys
 aws iam list-access-keys --user-name swiss-medical-dev
 
-# Desactivar cada access key (reemplaza AKIA... con tu key)
+# Desactivar cada access key (reemplaza YOUR_ACCESS_KEY_ID con tu key)
 aws iam update-access-key \
     --user-name swiss-medical-dev \
-    --access-key-id AKIA4RPLVDVYNGS2P5HJ \
+    --access-key-id YOUR_ACCESS_KEY_ID \
     --status Inactive
 
 # Verificar
@@ -97,7 +97,7 @@ echo "✅ Verificación completada"
 ```bash
 aws iam update-access-key \
     --user-name swiss-medical-dev \
-    --access-key-id AKIA4RPLVDVYNGS2P5HJ \
+    --access-key-id YOUR_ACCESS_KEY_ID \
     --status Active
 ```
 
