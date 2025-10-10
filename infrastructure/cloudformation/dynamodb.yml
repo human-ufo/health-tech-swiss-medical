@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'DynamoDB Tables for Swiss Medical Triage System'
+
+Resources:
+  PatientsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: health-tech-patients
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: patient_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: patient_id
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: SwissMedicalTriage
+        - Key: Environment
+          Value: Production
+
+  ConsultationsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: health-tech-consultations
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: consultation_id
+          AttributeType: S
+        - AttributeName: patient_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: consultation_id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: patient_id-index
+          KeySchema:
+            - AttributeName: patient_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: SwissMedicalTriage
+        - Key: Environment
+          Value: Production
+
+  TriageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: health-tech-triage
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: triage_id
+          AttributeType: S
+        - AttributeName: patient_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: triage_id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: patient_id-index
+          KeySchema:
+            - AttributeName: patient_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: SwissMedicalTriage
+        - Key: Environment
+          Value: Production
+
+Outputs:
+  PatientsTableName:
+    Description: Name of the Patients table
+    Value: !Ref PatientsTable
+    Export:
+      Name: !Sub '${AWS::StackName}-PatientsTable'
+
+  ConsultationsTableName:
+    Description: Name of the Consultations table
+    Value: !Ref ConsultationsTable
+    Export:
+      Name: !Sub '${AWS::StackName}-ConsultationsTable'
+
+  TriageTableName:
+    Description: Name of the Triage table
+    Value: !Ref TriageTable
+    Export:
+      Name: !Sub '${AWS::StackName}-TriageTable'
