@@ -28,7 +28,7 @@ Agregar tus credenciales:
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXXXXX
 AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-AWS_ACCOUNT_ID=862172028272
+AWS_ACCOUNT_ID=your_account_id_here
 
 📋 PASO 3: HABILITAR AWS BEDROCK (CRÍTICO)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
